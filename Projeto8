@@ -1,3 +1,6 @@
+"""
+Gerador de cpf válido
+"""
 import random
 
 nove_digitos = ''
