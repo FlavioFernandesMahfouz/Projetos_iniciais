@@ -46,9 +46,9 @@ for pergunta in perguntas:
     print()
     if acertou:
         qtd_acertos += 1
-        print('Acertou 👍')
+        print('Acertou')
     else:
-        print('Errou ❌')
+        print('Errou')
 
     print()
 
