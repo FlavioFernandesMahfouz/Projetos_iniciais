@@ -1,0 +1,16 @@
+# Exercícios
+# Crie funções que duplicam, triplicam e quadruplicam
+# o número recebido como parâmetro.
+
+
+def multiplicador(num, c):
+    return num * c
+
+
+duplicar = multiplicador(5, 2)
+triplicar = multiplicador(5, 3)
+quadruplicar = multiplicador(5, 4)
+
+print(duplicar)
+print(triplicar)
+print(quadruplicar)
