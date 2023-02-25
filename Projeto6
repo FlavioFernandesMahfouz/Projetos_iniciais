@@ -1,0 +1,45 @@
+"""
+Este é um programa bem simples que
+faz uma lista de compras, tendo as
+opções de inserir, listar e apagar
+visando atender à todas necessidades
+do cliente
+"""
+import os
+lista_compras = []
+produto = []
+while True:
+    print('')
+    print('Selecione uma opção.')
+    opção = str(input(('[I]nserir, [A]pagar ou [L]istar: '))).upper()[0]
+    if opção == 'I':
+        os.system('cls')
+        produto.append(input('Valor: '))
+        continue
+    elif opção == 'L':
+        os.system('cls')
+        if len(produto) == 0:
+            print('Nada para listar.')
+        for indice, item in enumerate(produto):
+            lista_compras.append(item)
+        produto.clear()
+    elif opção == 'A':
+        os.system('cls')
+        for k, v in enumerate(lista_compras):
+            print(f'{k} {v}')
+        índice = input('Escolha o índice para apagar: ')
+        try:
+            índice = int(indice)
+            lista_compras.pop(índice)
+        except IndexError:
+            print('Não foi possível apagar o produto com esse índice.')
+            continue
+        except (TypeError, ValueError):
+            print('Digite um número inteiro.')
+        except Exception as erro:
+            print(f'Erro desconhecido - {erro.__class__}')
+    else:
+        print('\033[31mEscolha inválida!\033[m')
+        continue
+    for k, v in enumerate(lista_compras):
+        print(f'{k} {v}')
