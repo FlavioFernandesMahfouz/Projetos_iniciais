@@ -18,46 +18,40 @@ perguntas = [
         'Resposta': '5',
     },
 ]
-def separador():
-    print()
-    print('-=' * 15)
-    print()
-contador_de_acertos = 0
-from time import sleep
 
-for p in perguntas:
-    for chave, valor in p.items():
-        separador()
-        if chave == 'Opções':
-            sleep(0.5)
-            print('Opções:')
-            for c, v in enumerate(valor):
-                sleep(0.25)
-                print(f'{c}) {v}')
-            print()
-            sleep(0.5)
-            while True:
-                opção = int(input('Escolha uma opção: '))
-                if 0 <= opção <= 3:
-                    número_opção = valor[opção]
-                    break
-                else:
-                    print('Digite uma alternativa válida')
-                    continue
-            print()
-        else:
-            sleep(0.5)
-            print()
-            print(f'{chave} : {valor}')
-        if chave == 'Resposta':
-            if número_opção == valor:
-                sleep(0.5)
-                print('Você acertou')
-                contador_de_acertos += 1
-            else:
-                sleep(0.5)
-                print(f'Você errou')
-print()
-sleep(0.5)
-print(f'Você acertou {contador_de_acertos}\
- de 3 perguntas')
+qtd_acertos = 0
+for pergunta in perguntas:
+    print('Pergunta:', pergunta['Pergunta'])
+    print()
+
+    opcoes = pergunta['Opções']
+    for i, opcao in enumerate(opcoes):
+        print(f'{i})', opcao)
+    print()
+
+    escolha = input('Escolha uma opção: ')
+
+    acertou = False
+    escolha_int = None
+    qtd_opcoes = len(opcoes)
+
+    if escolha.isdigit():
+        escolha_int = int(escolha)
+
+    if escolha_int is not None:
+        if escolha_int >= 0 and escolha_int < qtd_opcoes:
+            if opcoes[escolha_int] == pergunta['Resposta']:
+                acertou = True
+
+    print()
+    if acertou:
+        qtd_acertos += 1
+        print('Acertou 👍')
+    else:
+        print('Errou ❌')
+
+    print()
+
+
+print('Você acertou', qtd_acertos)
+print('de', len(perguntas), 'perguntas.')
