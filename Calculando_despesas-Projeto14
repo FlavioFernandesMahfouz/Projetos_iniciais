@@ -1,0 +1,72 @@
+class Despesas:
+    def __init__(self, contas):
+        self._contas = [contas]
+
+    @property
+    def contas(self):
+        # print('Estou no getter')
+        return self._contas
+    
+    @contas.setter
+    def contas(self, valor):
+        valor = [valor]
+        # print('Estou no setter')
+        self._contas = valor
+        return self._contas
+    
+    def adicionar_contas(self, novas_contas):
+        if not isinstance(novas_contas, list):
+            novas_contas = [novas_contas]
+        for conta in novas_contas:
+            self._contas.append(conta)
+    
+    def calcular_despesas(self):
+        despesas = 0
+        for conta in self._contas:
+            despesas += conta
+        print(f'Você deve R${despesas:.2f}')
+    
+    def listar_despesas(self):
+        c = 0
+        for v in self._contas:
+            c += 1
+            print(f'\033[0;31mConta {c} --> R${v}\033[m')
+    
+class Contas:
+    def __init__(self, contas):
+        contas = contas
+        self._contas = contas
+    
+    @property
+    def contas(self):
+        return self._contas
+    
+    @contas.setter
+    def contas(self, novas_contas):
+        self._contas = novas_contas
+        return self._contas
+
+        
+
+d1 = Despesas(30)
+print(d1.contas)
+d1.conta = 40
+d1.adicionar_contas(50)
+print(d1.contas)
+d1.calcular_despesas()
+d1.listar_despesas()
+
+
+from random import randint
+
+novas_contas = []
+for c in range(0, 5):
+    novas_contas.append(randint(1, 50))
+
+novas_contas = Contas(novas_contas)
+
+
+d1.adicionar_contas(novas_contas.contas)
+print(d1.contas)
+d1.calcular_despesas()
+d1.listar_despesas()
